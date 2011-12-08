@@ -1,0 +1,27 @@
+%table
+  %tr
+<% for attribute in @title_attributes -%>
+    %th.title <%= attribute.human_name %>
+<% end -%>
+<% if @title_attributes.empty? -%>
+    %th 
+<% end -%>
+<% for attribute in attributes -%>
+    %th <%= attribute.human_name %>
+<% end -%>
+
+  - <%= plural_table_name %>.each do |<%= singular_table_name %>|
+    %tr
+<% for attribute in @title_attributes -%>
+      %td.title= link_to <%= singular_table_name %>.<%= attribute.name %>, <%= singular_table_name %>
+<% end -%>
+<% if @title_attributes.empty? -%>
+      %td= link_to "Show", <%= singular_table_name %>
+<% end -%>
+<% for attribute in attributes -%>
+      %td= <%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+%br
+
+= link_to 'New <%= human_name %>', new_<%= singular_table_name %>_path, :class => 'btn'

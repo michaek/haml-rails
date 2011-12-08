@@ -12,7 +12,7 @@ class Haml::Generators::ScaffoldGeneratorTest < Rails::Generators::TestCase
   test "should invoke template engine" do
     run_generator
 
-    %w(index edit new show _form).each { |view| assert_file "app/views/product_lines/#{view}.html.haml" }
+    %w(index edit new show _form _list _item).each { |view| assert_file "app/views/product_lines/#{view}.html.haml" }
     assert_no_file "app/views/layouts/product_lines.html.haml"
   end
 

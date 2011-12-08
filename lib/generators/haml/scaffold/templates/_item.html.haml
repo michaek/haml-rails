@@ -1,0 +1,6 @@
+%dl
+<% for attribute in @title_attributes + attributes -%>
+
+  %dt <%= attribute.human_name %>
+  %dd= item.<%= attribute.name %>
+<% end -%>

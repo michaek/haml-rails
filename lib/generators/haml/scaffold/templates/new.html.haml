@@ -1,5 +1,4 @@
-%h1 New <%= singular_table_name %>
+- content_for :title do
+  New <%= singular_table_name.humanize %>
 
 = render 'form'
-
-= link_to 'Back', <%= index_helper %>_path

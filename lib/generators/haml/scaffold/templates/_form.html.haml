@@ -1,15 +1,14 @@
-= form_for @<%= singular_table_name %> do |f|
-  -if @<%= singular_table_name %>.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@<%= singular_table_name %>.errors.count, "error")} prohibited this <%= singular_table_name %> from being saved:"
-      %ul
-        - @<%= singular_table_name %>.errors.full_messages.each do |msg|
-          %li= msg
-
-<% for attribute in attributes -%>
-  .field
-    = f.label :<%= attribute.name %>
-    = f.<%= attribute.field_type %> :<%= attribute.name %>
+= semantic_form_for @<%= singular_name %>, :url => @<%= singular_name %>.new_record? ? collection_path : resource_path do |f|
+  = render :partial => 'shared/form_errors', :locals => {:form_object => @<%= singular_name %>}
+  = f.inputs do
+<% @title_attributes.each do |attribute| -%>
+    = f.input :<%= attribute.name %>, :input_html => {:class => 'title'}
 <% end -%>
-  .actions
-    = f.submit 'Save'
+<% attributes.each do |attribute| -%>
+    = f.input :<%= attribute.name %>
+<% end -%>
+
+  = f.buttons do
+    = f.commit_button :button_html => {:class => 'primary'}
+    - unless @<%= singular_name %>.new_record?
+      = link_to 'Destroy', resource_path, :class => 'btn danger', :confirm => 'Are you sure?', :method => :delete

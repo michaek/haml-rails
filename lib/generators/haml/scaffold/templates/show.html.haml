@@ -1,11 +1,19 @@
-%p#notice= notice
-
-<% for attribute in attributes -%>
-%p
-  %b <%= attribute.human_name %>:
+- content_for :title do
+<% for attribute in @title_attributes -%>
   = @<%= singular_table_name %>.<%= attribute.name %>
 <% end -%>
+<% if @title_attributes.empty? -%>
+  <%= singular_table_name.humanize %>
+<% end -%>
 
-= link_to 'Edit', edit_<%= singular_table_name %>_path(@<%= singular_table_name %>)
-\|
-= link_to 'Back', <%= index_helper %>_path
+%dl
+<% for attribute in attributes -%>
+
+  %dt <%= attribute.human_name %>
+  %dd= @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+
+= link_to 'Edit', edit_resource_path, :class => 'btn'
+
+-# Want to render related models, such as children, here? Uncomment and edit.
+-# = render :partial => 'relateds/list', :locals => {:relateds => @relateds}
