@@ -14,6 +14,13 @@ class Haml::Generators::ScaffoldGeneratorTest < Rails::Generators::TestCase
 
     %w(index edit new show _form _list _item).each { |view| assert_file "app/views/product_lines/#{view}.html.haml" }
     assert_no_file "app/views/layouts/product_lines.html.haml"
+    
+    # Copy generated files to docs/output
+    # - I know it's super lazy to put this here! Quick, dirty...
+    examples_dir = File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', '..', 'docs', 'output'))
+    # Delete existing examples?
+    # `rm -rf #{File.join(examples_dir, '*')};`
+    `rsync -r #{File.join(Rails.root, '')} #{File.join(examples_dir, '')}`
   end
 
   test "should revoke template engine" do

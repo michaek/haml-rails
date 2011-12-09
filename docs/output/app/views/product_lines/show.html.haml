@@ -1,0 +1,12 @@
+- content_for :title do
+  = @product_line.title
+
+%dl
+
+  %dt Price
+  %dd= @product_line.price
+
+= link_to 'Edit', edit_resource_path, :class => 'btn'
+
+-# Want to render related models, such as children, here? Uncomment and edit.
+-# = render :partial => 'relateds/list', :locals => {:relateds => @relateds}

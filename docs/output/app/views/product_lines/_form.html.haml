@@ -1,0 +1,10 @@
+= semantic_form_for @product_line, :url => @product_line.new_record? ? collection_path : resource_path do |f|
+  = render :partial => 'shared/form_errors', :locals => {:form_object => @product_line}
+  = f.inputs do
+    = f.input :title, :input_html => {:class => 'title'}
+    = f.input :price
+
+  = f.buttons do
+    = f.commit_button :button_html => {:class => 'primary'}
+    - unless @product_line.new_record?
+      = link_to 'Destroy', resource_path, :class => 'btn danger', :confirm => 'Are you sure?', :method => :delete

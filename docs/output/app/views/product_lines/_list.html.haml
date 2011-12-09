@@ -1,0 +1,13 @@
+%table
+  %tr
+    %th.title Title
+    %th Price
+
+  - product_lines.each do |product_line|
+    %tr
+      %td.title= link_to product_line.title, product_line
+      %td= product_line.price
+
+%br
+
+= link_to 'New Product line', new_product_line_path, :class => 'btn'
