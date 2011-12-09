@@ -1,10 +1,10 @@
 - content_for :title do
   Editing
-  <% for attribute in @title_attributes -%>
-    = @<%= singular_table_name %>.<%= attribute.name %>
-  <% end -%>
-  <% if @title_attributes.empty? -%>
-    <%= singular_table_name.humanize %>
-  <% end -%>
+<% for attribute in @title_attributes -%>
+  = @<%= singular_table_name %>.<%= attribute.name %>
+<% end -%>
+<% if @title_attributes.empty? -%>
+  <%= singular_table_name.humanize %>
+<% end -%>
 
 = render 'form'
